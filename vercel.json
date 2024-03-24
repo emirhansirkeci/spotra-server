@@ -9,7 +9,11 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "src/maint.js"
+      "dest": "src/maint.js",
+      "methods": [
+        "GET",
+        "POST"
+      ]
     }
   ]
 }
