@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
-import { translate } from 'bing-translate-api';
+import { translate, lang } from 'bing-translate-api';
 import { Translate } from './entitiies/translate.entitiy';
 import { Result } from './entitiies/result.entitiy';
 
@@ -7,6 +7,9 @@ import { Result } from './entitiies/result.entitiy';
 export class TranslateService {
   async translateWord(body: Translate): Promise<Result> {
     let { content, source, target } = body;
+
+    source = source.toLowerCase();
+    target = target.toLowerCase();
 
     if (!content || !content?.trim()) {
       throw new BadRequestException('Invalid request.', { description: 'Please provide a valid content parameter.'});
@@ -18,6 +21,14 @@ export class TranslateService {
 
     if (source == target || source?.trim() == "" || source == "au") {
       source = "auto-detect";
+    }
+
+    if (!lang.isSupported(source) && source != "auto-detect") {
+      throw new BadRequestException('Unsupported language.', { description: 'Provided source language is not supported.'});
+    }
+
+    if (!lang.isSupported(target)) {
+      throw new BadRequestException('Unsupported language.', { description: 'Provided target language is not supported.'});
     }
 
     try {
