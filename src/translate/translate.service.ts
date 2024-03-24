@@ -33,7 +33,7 @@ export class TranslateService {
 
     try {
       const result = await translate(content, source, target)
-        .then((response) => { console.log(response); return response.translation })
+        .then((response) => { return response.translation })
         .then((translation) => { return translation.charAt(0).toUpperCase() + translation.slice(1).toLowerCase()})
         .then((formattedResult) => {
           return {
