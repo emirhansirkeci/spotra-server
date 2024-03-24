@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { TranslateService } from './translate.service';
-import { Result } from './entitiies/result.entitiy';
-import { Translate } from './entitiies/translate.entitiy';
+import { Result } from './entities/result.entitiy';
+import { Translate } from './entities/translate.entitiy';
 
 @Controller('translate')
 export class TranslateController {

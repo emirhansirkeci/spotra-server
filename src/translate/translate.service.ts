@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { translate, lang } from 'bing-translate-api';
-import { Translate } from './entitiies/translate.entitiy';
-import { Result } from './entitiies/result.entitiy';
+import { Translate } from './entities/translate.entitiy';
+import { Result } from './entities/result.entitiy';
 
 @Injectable()
 export class TranslateService {
