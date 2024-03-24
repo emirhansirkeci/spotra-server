@@ -8,8 +8,8 @@ export class TranslateService {
   async translateWord(body: Translate): Promise<Result> {
     let { content, source, target } = body;
 
-    source = source.toLowerCase();
-    target = target.toLowerCase();
+    source = source?.toLowerCase();
+    target = target?.toLowerCase();
 
     if (!content || !content?.trim()) {
       throw new BadRequestException('Invalid request.', { description: 'Please provide a valid content parameter.'});
